@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darari - Oyun Kiralama ve Satın Alma Platformu</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+
+    <!-- Font Awesome ikon kütüphanesi -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header Bölümü -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="assets/Mte Logo.png" alt="Darari Logo" style="height: 50px; width: 50px; ">
+                </div>
+                <div class="user-actions">
+                    <a href="#"><i class="fas fa-user"></i> Hesabım</a>
+                    <a href="#"><i class="fas fa-heart"></i> İstek Listesi</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i> Sepet</a>
+                </div>
+            </div>
+            
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <ul>
+                    <li><a href="#anasayfa">Anasayfa</a></li>
+                    <li><a href="#kategoriler">Kategoriler</a></li>
+                    <li><a href="#yeni-cikanlar">Yeni Çıkanlar</a></li>
+                    <li><a href="#abonelik">Abonelik</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ana İçerik -->
+    <main>
+        <div class="container">
+            <div id="anasayfa" class="search-bar">
+                <input type="text" class="search-input" placeholder="Oyun, platform veya kategori ara...">
+                <button class="search-button"><i class="fas fa-search"></i></button>
+            </div>
+            <!-- Ana Slider -->
+            <div class="main-slider">
+                <div class="slide">
+                    <img src="/assets/Yeni1.jpeg" alt="Yeni Çıkan Oyun">
+                    <div class="slide-content">
+                        <h2>Yeni Çıkan En İyi Oyunlar</h2>
+                        <p>En yeni oyunları hemen keşfedin ve kiralayın!</p>
+                        <div class="slide-buttons">
+                            <button class="btn-minimal">Satın Al</button>
+                            <button class="btn-minimal">Kirala</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategori Bölümü - Ayrı Section -->
+        <section id="kategoriler" class="categories-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Kategoriler</h2>
+                    <p>İhtiyacınıza uygun kategorileri keşfedin ve sevdiğiniz oyunlara ulaşın</p>
+                </div>
+                <div class="category-grid">
+                    <div class="category-box">
+                        <i class="fas fa-globe-europe"></i>
+                        <h3>Açık Dünya</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-masks-theater"></i>
+                        <h3>Rol Yapma</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-fighter-jet"></i>
+                        <h3>Aksiyon / Macera</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-football-ball"></i>
+                        <h3>Spor / Yarış</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-chess"></i>
+                        <h3>Strateji / Simülasyon</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-users"></i>
+                        <h3>Çok Oyunculu</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-ghost"></i>
+                        <h3>Korku</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="category-box">
+                        <i class="fas fa-list-ul"></i>
+                        <h3>Tümü</h3>
+                        <a href="#" class="category-link">Keşfet <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Yeni Eklenen Oyunlar -->
+        <section id="yeni-cikanlar" class="container">
+            <div class="game-section-wrapper">
+                <div class="section-title">
+                    <h2>Yeni Eklenenler</h2>
+                    <div class="section-navigation">
+                        <button class="scroll-arrow scroll-arrow-left">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="scroll-arrow scroll-arrow-right">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="game-cards">
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 1">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">Battlefield 2042</div>
+                            <div class="game-price">₺799,00</div>
+                            <div class="game-rent">Kiralama: ₺99/hafta</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 2">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">FIFA 25</div>
+                            <div class="game-price">₺1.299,00</div>
+                            <div class="game-rent">Kiralama: ₺149/hafta</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 3">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">Assassin's Creed Shadows</div>
+                            <div class="game-price">₺1.199,00</div>
+                            <div class="game-rent">Kiralama: ₺129/hafta</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 4">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">Call of Duty: Black Ops 6</div>
+                            <div class="game-price">₺1.399,00</div>
+                            <div class="game-rent">Kiralama: ₺169/hafta</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 5">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">The Last of Us Part III</div>
+                            <div class="game-price">₺1.499,00</div>
+                            <div class="game-rent">Kiralama: ₺179/hafta</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 6">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">R.E.P.O</div>
+                            <div class="game-price">₺399,00</div>
+                            <div class="game-rent">Kiralama: ₺59/hafta</div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-card-img">
+                            <img src="/api/placeholder/220/150" alt="Oyun 7">
+                        </div>
+                        <div class="game-card-content">
+                            <div class="game-title">Valheim</div>
+                            <div class="game-price">₺499,00</div>
+                            <div class="game-rent">Kiralama: ₺79/hafta</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- En Çok Kiralananlar -->
+             <div class="game-section-wrapper">
+                <div class="section-title">
+                    <h2>En Çok Kiralananlar</h2>
+                    <div class="section-navigation">
+                        <button class="scroll-arrow scroll-arrow-left">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="scroll-arrow scroll-arrow-right">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                    <div class="game-cards">
+                        <div class="game-card">
+                            <div class="game-card-img">
+                                <img src="/api/placeholder/220/150" alt="Kiralık Oyun 1">
+                            </div>
+                            <div class="game-card-content">
+                                <div class="game-title">Grand Theft Auto VI</div>
+                                <div class="game-price">₺1.599,00</div>
+                                <div class="game-rent">Kiralama: ₺199/hafta</div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-img">
+                                <img src="/api/placeholder/220/150" alt="Kiralık Oyun 2">
+                            </div>
+                            <div class="game-card-content">
+                                <div class="game-title">Spider-Man 2</div>
+                                <div class="game-price">₺999,00</div>
+                                <div class="game-rent">Kiralama: ₺119/hafta</div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-img">
+                                <img src="/api/placeholder/220/150" alt="Kiralık Oyun 3">
+                            </div>
+                            <div class="game-card-content">
+                                <div class="game-title">Horizon New Dawn</div>
+                                <div class="game-price">₺899,00</div>
+                                <div class="game-rent">Kiralama: ₺99/hafta</div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-img">
+                                <img src="/api/placeholder/220/150" alt="Kiralık Oyun 4">
+                            </div>
+                            <div class="game-card-content">
+                                <div class="game-title">Forza Horizon 5</div>
+                                <div class="game-price">₺1.099,00</div>
+                                <div class="game-rent">Kiralama: ₺129/hafta</div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-img">
+                                <img src="/api/placeholder/220/150" alt="Kiralık Oyun 5">
+                            </div>
+                            <div class="game-card-content">
+                                <div class="game-title">God of War Ragnarök</div>
+                                <div class="game-price">₺999,00</div>
+                                <div class="game-rent">Kiralama: ₺119/hafta</div>
+                            </div>
+                        </div>
+                        <div class="game-card">
+                            <div class="game-card-img">
+                                <img src="/api/placeholder/220/150" alt="Kiralık Oyun 5">
+                            </div>
+                            <div class="game-card-content">
+                                <div class="game-title">Balatro</div>
+                                <div class="game-price">₺399,00</div>
+                                <div class="game-rent">Kiralama: ₺59/hafta</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Abonelik Reklamı -->
+            <div class="subscription-container" id="abonelik">
+                <div class="subscription-card monthly-card">
+                    <h2 class="card-title">Aylık Abonelik</h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Seçkin 50 Oyuna Sınırsız Erişim
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Güncellenen Oyun Havuzu
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            10 Saatlik Premium Oyun Denemesi
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Otomatik Yenilenme Özelliği
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Abonelik İptal İmkanı
+                        </li>
+                    </ul>
+                    <div class="price">₺199.99/Ay</div>
+                    <button class="btn-box">Şimdi Başla</button>
+                </div>
+        
+                <div class="subscription-card yearly-card">
+                    <h2 class="card-title">Yıllık Abonelik</h2>
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Premium Oyunlara Sınırsız Erişim
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Güncellenen Oyun Havuzu
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Çıktığı Gün Eklenen Yeni Oyunlar
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Üye Fırsatları ve İndirimleri
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            Abonelik İptal İmkanı
+                        </li>
+                    </ul>
+                    <div class="price">₺1899.99/Yıl</div>
+                    <button class="btn-box">Şimdi Başla</button>
+                </div>
+            </div>  
+        </section>   
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div id="iletisim" class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hakkımızda</h3>
+                    <ul>
+                        <li><a href="#">Şirketimiz</a></li>
+                        <li><a href="#">Kariyer</a></li>
+                        <li><a href="#">Basın</a></li>
+                        <li><a href="#">İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Müşteri Hizmetleri</h3>
+                    <ul>
+                        <li><a href="#">Yardım Merkezi</a></li>
+                        <li><a href="#">Sipariş Takibi</a></li>
+                        <li><a href="#">İade Politikası</a></li>
+                        <li><a href="#">Kiralama Şartları</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Bizi Takip Edin</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DARARI. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
