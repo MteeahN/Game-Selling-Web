@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darari - Oyun Kiralama ve Satın Alma</title>
+    <style>
+        /* Reset and Base Styles */
+
+        :root {
+            --turuncu-ana: #FF8000;
+            --turuncu-koyu: #D66B00;
+            --turuncu-acik: #FFB266;
+            --beyaz: #FFFFFF;
+            --siyah: #040404;
+            --gri-koyu: #1B1B1B;
+            --gri-acik: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            background-color: var(--gri-koyu);
+            color: var(--turuncu-ana);
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--gri-koyu);
+            color: var(--beyaz);
+            padding: 15px 0;
+            border-bottom: 2px solid var(--turuncu-koyu);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: var(--turuncu-koyu);
+            transition: 0.3s;
+            z-index: 1000;
+            padding-top: 60px;
+        }
+
+        .side-nav.active {
+            right: 0;
+        }
+
+        .side-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .side-nav-overlay.active {
+            display: block;
+        }
+
+        .side-nav-content {
+            padding: 20px;
+        }
+
+        .side-nav-content a {
+            display: block;
+            color: var(--gri-koyu);
+            padding: 15px;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background-color 0.3s;
+        }
+
+        .side-nav-content a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .nav-toggle {
+            cursor: pointer;
+            z-index: 1001;
+            flex-direction: column;
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-toggle .bar {
+            background-color: var(--beyaz);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: center;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-icons a {
+            color: var(--beyaz);
+            text-decoration: none;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background-color: var(--gri-koyu);
+            padding: 10px ;
+        }
+
+        .search-bar {
+            display: flex;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid var(--turuncu-koyu);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .search-button {
+            padding: 10px 15px;
+            background-color: var(--turuncu-ana);
+            color: var(--beyaz);
+            border: none;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Category Section */
+        .categories-section {
+            padding: 10px;
+            background-color: var(--gri-acik);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .category-box {
+            height: 150px ;
+            background-color: var(--gri-koyu);
+            border: 2px solid var(--turuncu-koyu);
+            text-align: center;
+            padding: 40% 0px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .category-box:hover{
+            transform: scale(1.05);
+        }
+
+        .category-box i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--turuncu-ana);
+        }
+
+        .category-box h3 {
+            font-size: 14px;
+        }
+
+        /* Game Cards */                                                                                                
+        .game-section {
+            margin-bottom: 20px;
+            background-color: var(--gri-koyu);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            border-bottom: var(--turuncu-ana);
+            margin-bottom: 15px;
+        }
+
+        .game-cards {
+            display: flex;
+            height: 220px;
+
+            overflow-x: auto;
+            color: var(--beyaz);
+            gap: 10px;
+            padding-bottom: 15px;
+        }
+
+        .game-card {
+            min-width: 150px;
+            background-color: var(--siyah);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px var(--gri-acik);
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover{
+            transform: translateY(-5px);
+        }
+
+        .game-card-img img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .game-card-content {
+            margin: 60px 0px 0px 10px;
+        }
+
+        .game-title {
+            font-weight: bold;
+        }
+
+        .game-price {
+            color: var(--turuncu-ana);
+        }
+
+        .game-rent {
+            color: var(--turuncu-acik);
+            font-size: 0.9em;
+        }
+
+        /* Subscription Section */
+        .subscription-section {
+            background-color: var(--gri-acik);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .subscription-card {
+            background-color: var(--turuncu-ana);
+            color: var(--gri-koyu);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .feature-list {
+            list-style-type: none;
+            margin-bottom: 15px;
+        }
+
+        .feature-item {
+            margin-bottom: 10px;
+        }
+
+        .feature-icon {
+            color: var(--turuncu-acik);
+            margin-right: 10px;
+        }
+
+        .btn-box {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--gri-koyu);
+            color: var(--turuncu-ana);
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--gri-koyu);
+            color: var(--turuncu-ana);
+            padding: 20px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style-type: none;
+        }
+
+        .footer-column a {
+            color: var(--beyaz);
+            text-decoration: none;
+            line-height: 2;
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../assets/MteLogo.png" alt="Logo" style="max-height: 50px; max-width: 100px;">
+                </div>
+                <div class="nav-icons">
+                    <a href="#"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    <div class="nav-toggle">
+                        <div class="fas fa-bars"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Oyun, platform veya kategori ara...">
+            <button class="search-button"><i class="fas fa-search"></i></button>
+        </div>
+    </section>
+
+    <!-- Side Navigation -->
+    <div class="side-nav-overlay"></div>
+    <nav class="side-nav">
+        <div class="side-nav-content">
+            <a href="#home">Ana Sayfa</a>
+            <a href="#new-games">Yeni Eklenenler</a>
+            <a href="#most-rented">En Çok Kiralananlar</a>
+            <a href="#categories">Kategoriler</a>
+            <a href="#subscription">Abonelik</a>
+            <a href="#contact">İletişim</a>
+        </div>
+    </nav>
+
+    <!-- Categories Section -->
+    <section class="categories-section container">
+        <div class="category-grid">
+            <div class="category-box">
+                <i class="fas fa-globe-europe"></i>
+                <h3>Açık Dünya</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-masks-theater"></i>
+                <h3>Rol Yapma</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-fighter-jet"></i>
+                <h3>Aksiyon</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-football-ball"></i>
+                <h3>Spor</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-chess"></i>
+                <h3>Strateji</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-users"></i>
+                <h3>Çok Oyunculu</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-ghost"></i>
+                <h3>Korku</h3>
+            </div>
+            <div class="category-box">
+                <i class="fas fa-list-ul"></i>
+                <h3>Tümü</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Games Section -->
+    <section class="game-section container">
+        <div class="section-header">
+            <h2>Yeni Eklenenler</h2>
+        </div>
+        <div class="game-cards">
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="/api/placeholder/220/150" alt="Oyun 1">
+                </div>
+                <div class="game-card-content">
+                    <div class="game-title">Battlefield 2042</div>
+                    <div class="game-price">₺799,00</div>
+                    <div class="game-rent">Kiralama: ₺99/hafta</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="/api/placeholder/220/150" alt="Oyun 2">
+                </div>
+                <div class="game-card-content">
+                    <div class="game-title">FIFA 25</div>
+                    <div class="game-price">₺1.299,00</div>
+                    <div class="game-rent">Kiralama: ₺149/hafta</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="/api/placeholder/220/150" alt="Oyun 3">
+                </div>
+                <div class="game-card-content">
+                    <div class="game-title">Assassin's Creed Shadows</div>
+                    <div class="game-price">₺1.199,00</div>
+                    <div class="game-rent">Kiralama: ₺129/hafta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Most Rented Games Section -->
+    <section class="game-section container">
+        <div class="section-header">
+            <h2>En Çok Kiralananlar</h2>
+        </div>
+        <div class="game-cards">
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="/api/placeholder/220/150" alt="Oyun 1">
+                </div>
+                <div class="game-card-content">
+                    <div class="game-title">GTA VI</div>
+                    <div class="game-price">₺1.599,00</div>
+                    <div class="game-rent">Kiralama: ₺199/hafta</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="/api/placeholder/220/150" alt="Oyun 2">
+                </div>
+                <div class="game-card-content">
+                    <div class="game-title">Spider-Man 2</div>
+                    <div class="game-price">₺999,00</div>
+                    <div class="game-rent">Kiralama: ₺119/hafta</div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="/api/placeholder/220/150" alt="Oyun 3">
+                </div>
+                <div class="game-card-content">
+                    <div class="game-title">God of War</div>
+                    <div class="game-price">₺999,00</div>
+                    <div class="game-rent">Kiralama: ₺119/hafta</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section class="container subscription-section">
+        <div class="subscription-card">
+            <h2>Aylık Abonelik</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    50 Oyuna Sınırsız Erişim
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    Güncellenen Oyun Havuzu
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    10 Saatlik Premium Oyun Denemesi
+                </li>
+                <div class="price">₺199.99/Ay</div>
+                <button class="btn-box">Şimdi Başla</button>
+            </ul>
+        </div>
+        <div class="subscription-card">
+            <h2>Yıllık Abonelik</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    Premium Oyunlara Sınırsız Erişim
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    Çıktığı Gün Yeni Oyunlar
+                </li>
+                <li class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    %20 İndirim
+                </li>
+                <div class="price">₺1.899.99/Yıl</div>
+                <button class="btn-box">Şimdi Başla</button>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>Hakkımızda</h3>
+                <ul>
+                    <li><a href="#">Şirketimiz</a></li>
+                    <li><a href="#">Kariyer</a></li>
+                    <li><a href="#">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="#">Yardım Merkezi</a></li>
+                    <li><a href="#">Sipariş Takibi</a></li>
+                    <li><a href="#">İade Politikası</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Bizi Takip Edin</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DARARI. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.querySelector('.nav-toggle');
+    const sideNav = document.querySelector('.side-nav');
+    const sideNavOverlay = document.querySelector('.side-nav-overlay');
+    const navBars = navToggle.querySelectorAll('.bar');
+
+    navToggle.addEventListener('click', () => {
+        // Toggle active state
+        navToggle.classList.toggle('active');
+        sideNav.classList.toggle('active');
+        sideNavOverlay.classList.toggle('active');
+
+        // Animate nav toggle bars with a staggered, sliding effect
+        navBars.forEach((bar, index) => {
+            bar.style.transition = 'all 0.4s ease';
+            
+            if (navToggle.classList.contains('active')) {
+                // Staggered sliding and scaling animation
+                bar.style.transformOrigin = 'center';
+                
+                if (index === 0) {
+                    bar.style.transform = 'translateX(10px) rotate(45deg) scaleX(1.2)';
+                    bar.style.backgroundColor = '#FF8000';
+                } else if (index === 1) {
+                    bar.style.transform = 'scale(0)';
+                    bar.style.opacity = '0';
+                } else if (index === 2) {
+                    bar.style.transform = 'translateX(-10px) rotate(-45deg) scaleX(1.2)';
+                    bar.style.backgroundColor = '#FF8000';
+                }
+            } else {
+                // Reset to original state with bounce effect
+                bar.style.transform = 'translateX(0) rotate(0) scale(1)';
+                bar.style.opacity = '1';
+                bar.style.backgroundColor = '#FFFFFF';
+            }
+        });
+    });
+
+    sideNavOverlay.addEventListener('click', () => {
+        // Reset everything when overlay is clicked
+        navToggle.classList.remove('active');
+        sideNav.classList.remove('active');
+        sideNavOverlay.classList.remove('active');
+
+        // Reset nav toggle bars
+        navBars.forEach(bar => {
+            bar.style.transform = 'translateX(0) rotate(0) scale(1)';
+            bar.style.opacity = '1';
+            bar.style.backgroundColor = '#FFFFFF';
+        });
+    });
+
+    // Smooth scrolling for navigation links (same as previous implementation)
+    document.querySelectorAll('.side-nav-content a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Close the side navigation
+            navToggle.classList.remove('active');
+            sideNav.classList.remove('active');
+            sideNavOverlay.classList.remove('active');
+
+            // Reset nav toggle bars
+            navBars.forEach(bar => {
+                bar.style.transform = 'translateX(0) rotate(0) scale(1)';
+                bar.style.opacity = '1';
+                bar.style.backgroundColor = '#FFFFFF';
+            });
+
+            // Scroll to the section
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

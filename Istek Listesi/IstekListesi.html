@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Oyun İstek Listesi</title>
+    <link rel="stylesheet" href="IstekListesi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Header Bölümü -->
+<header>
+    <section>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img onclick="window.location.href='../Uye/Uye.html'" src="../assets/MteLogo.png" alt="Darari Logo" style="height: 50px; width: 50px; ">
+                </div>
+                <div class="user-actions">
+                    <a onclick="window.location.href='../Profil/Profil.html'"><i class="fas fa-user"></i> Profil</a>
+                    <a onclick="window.location.href='../Istek Listesi/IstekListesi.html'"><i class="fas fa-heart"></i> İstek Listesi</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i>Sepet</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+
+    <div class="wish-container">
+        <h1 class="title">Oyun İstek Listesi</h1>
+
+        <div class="sorting-controls">
+            <select class="sort-select" id="sort-by" onchange="sortGames()">
+                <option value="name-asc">İsme Göre Artan (A-Z)</option>
+                <option value="name-desc">İsme Göre Azalan (Z-A)</option>
+                <option value="price-asc">Fiyata Göre Artan</option>
+                <option value="price-desc">Fiyata Göre Azalan</option>
+                <option value="date-asc">Eklenme Tarihine Göre En Eski</option>
+                <option value="date-desc">Eklenme Tarihine Göre En Yeni</option>
+                <option value="priority-asc">Önceliğe Göre Artan</option>
+                <option value="priority-desc">Önceliğe Göre Azalan</option>
+            </select>
+        </div>
+        <div class="game-list" id="game-list"></div>
+    </div>
+    <script src="IstekListesi.js"></script>
+</body>
