@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Açık Dünya Oyunları</title>
+    <style>
+
+        :root {
+            --turuncu-ana: #FF8000;
+            --turuncu-koyu: #D66B00;
+            --turuncu-acik: #FFB266;
+            --beyaz: #FFFFFF;
+            --siyah: #040404;
+            --gri-koyu: #1b1b1b;
+            --gri-acik: #333333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--gri-acik);
+        }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .game-card {
+            background-color: var(--gri-koyu);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 15px;
+            width: 250px;
+        }
+        .game-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+            color: var(--turuncu-ana);
+        }
+    </style>
+</head>
+<body>
+    <h1>Açık Dünya Oyunları</h1>
+    <div class="game-container">
+        <?php
+        // Veritabanı bağlantı bilgileri
+        $servername = "localhost";
+        $username = "kullanici_adi";
+        $password = "sifre";
+        $dbname = "oyun_veritabani";
+
+        // Bağlantı oluştur
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Bağlantıyı kontrol et
+        if ($conn->connect_error) {
+            die("Bağlantı hatası: " . $conn->connect_error);
+        }
+
+        // Açık dünya kategorisindeki oyunları çek
+        $sql = "SELECT oyun_adi, aciklama, resim_url, yayin_tarihi 
+                FROM oyunlar 
+                WHERE kategori = 'Açık Dünya'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // Her oyun için kart oluştur
+            while($row = $result->fetch_assoc()) {
+                echo "<div class='game-card'>";
+                echo "<img src='" . $row["resim_url"] . "' alt='" . $row["oyun_adi"] . "'>";
+                echo "<h2>" . $row["oyun_adi"] . "</h2>";
+                echo "<p>" . $row["aciklama"] . "</p>";
+                echo "<p><strong>Yayın Tarihi:</strong> " . $row["yayin_tarihi"] . "</p>";
+                echo "</div>";
+            }
+        } else {
+            echo "Hiç açık dünya oyunu bulunamadı.";
+        }
+
+        // Bağlantıyı kapat
+        $conn->close();
+        ?>
+    </div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Hesap Ayarları</title>
+    <link rel="stylesheet" href="ProfilAyarlari.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="settings-container">
+            <div class="settings-header">
+                <div class="back-button" title="Profile Dön">←</div>
+                <h1>Hesap Ayarları</h1>
+            </div>
+            
+            <div class="settings-content">
+                <div class="account-settings">
+                    <h2 class="section-title">Kişisel Bilgilerinizi Güncelleyin</h2>
+                    
+                    <form>
+                        <div class="form-group">
+                            <label for="firstName">Ad</label>
+                            <input type="text" id="firstName" value="Ahmet">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName">Soyad</label>
+                            <input type="text" id="lastName" value="Yılmaz">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username">Kullanıcı Adı</label>
+                            <input type="text" id="username" value="ahmet_yilmaz34">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" value="ahmet.yilmaz@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefon</label>
+                            <input type="tel" id="phone" value="+90 (555) 123 45 67">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Adres</label>
+                            <input type="text" id="address" value="Atatürk Mahallesi, İstanbul Caddesi No:123, İstanbul">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Yeni Şifre</label>
+                            <input type="password" id="password">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirmPassword">Şifre Tekrar</label>
+                            <input type="password" id="confirmPassword">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="goBackToProfile()">İptal</button>
+                            <button type="submit" class="btn btn-primary">Değişiklikleri Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="account-settings">
+                    <h2 class="section-title">Bildirim Tercihleri</h2>
+                    
+                    <form>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>
+                                <input type="checkbox" checked> E-posta bildirimleri
+                            </label>
+                            <p style="margin-top: 5px; font-size: 0.9em; color: #777;">Yeni kampanyalar ve özel teklifler hakkında e-posta almak istiyorum</p>
+                        </div>
+                        
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>
+                                <input type="checkbox" checked> SMS bildirimleri
+                            </label>
+                            <p style="margin-top: 5px; font-size: 0.9em; color: #777;">Özel indirimler ve kampanyalar hakkında SMS almak istiyorum</p>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Tercihleri Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="account-settings">
+                    <h2 class="section-title">Hesap Güvenliği</h2>
+                    
+                    <form>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>
+                                <input type="checkbox"> İki faktörlü kimlik doğrulamayı etkinleştir
+                            </label>
+                            <p style="margin-top: 5px; font-size: 0.9em; color: #777;">Hesabınıza giriş yaparken ek bir güvenlik katmanı ekler</p>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Güvenlik Ayarlarını Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="Profil.js"></script>
+    
+</body>
+</html>
