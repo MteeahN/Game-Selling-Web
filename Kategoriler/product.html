@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Oyun Detayı</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .product-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      max-width: 900px;
+      width: 100%;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: none;
+    }
+
+    .gallery img.active {
+      display: block;
+      animation: fade 0.5s ease-in-out;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .gallery-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 1rem;
+    }
+
+    .gallery-controls button {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .product-content {
+      padding: 2rem;
+    }
+
+    .product-title {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wishlist {
+      background: none;
+      border: none;
+      color: #ff5ea0;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .wishlist:hover {
+      transform: scale(1.2);
+    }
+
+    .product-price {
+      font-size: 1.4rem;
+      color: #00ffb8;
+      margin-bottom: 1rem;
+    }
+
+    .product-description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .buy {
+      background: #00ffb8;
+      color: #000;
+    }
+
+    .rent {
+      background: #ffae00;
+      color: #000;
+    }
+
+    .back-btn {
+      margin-top: 2rem;
+      display: inline-block;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      opacity: 0.8;
+    }
+
+    .back-btn:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="product-card" id="productCard">
+    <div class="gallery" id="gallery">
+      <img src="" class="active" id="img0">
+      <img src="" id="img1">
+      <img src="" id="img2">
+      <div class="gallery-controls">
+        <button onclick="prevImage()">❮</button>
+        <button onclick="nextImage()">❯</button>
+      </div>
+    </div>
+    <div class="product-content">
+      <div class="product-title">
+        <span id="gameTitle">Oyun Başlığı</span>
+        <button class="wishlist" onclick="addToWishlist()">♡</button>
+      </div>
+      <div class="product-price" id="gamePrice">₺0,00</div>
+      <div class="product-description" id="gameDescription">Açıklama yükleniyor...</div>
+      <div class="actions">
+        <button class="btn buy">Satın Al</button>
+        <button class="btn rent">Kirala</button>
+      </div>
+      <a href="Acikdunya.html" class="back-btn">← Geri Dön</a>
+    </div>
+  </div>
+
+  <script>
+    const games = {
+      witcher3: {
+        title: "The Witcher 3: Wild Hunt",
+        images: [
+          "https://via.placeholder.com/900x400?text=Witcher+3+-+1",
+          "https://via.placeholder.com/900x400?text=Witcher+3+-+2",
+          "https://via.placeholder.com/900x400?text=Witcher+3+-+3"
+        ],
+        price: "₺199,00",
+        description: "Geralt of Rivia'nın epik açık dünya macerası. Zengin hikaye, büyüleyici karakterler ve etkileyici savaş sistemiyle fantastik bir deneyim."
+      },
+      eldenring: {
+        title: "Elden Ring",
+        images: [
+          "https://via.placeholder.com/900x400?text=Elden+Ring+1",
+          "https://via.placeholder.com/900x400?text=Elden+Ring+2",
+          "https://via.placeholder.com/900x400?text=Elden+Ring+3"
+        ],
+        price: "₺899,00",
+        description: "FromSoftware'ın en yeni RPG şaheseri. Geniş ve tehlikeli açık dünyada keşif yapın, düşmanlarla savaşın ve gizemleri çözün."
+      }
+      // Diğer oyunlar da aynı yapıda eklenebilir
+    };
+
+    let currentIndex = 0;
+
+    function getGameId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("id");
+    }
+
+    function updateGallery(images) {
+      images.forEach((src, index) => {
+        const img = document.getElementById("img" + index);
+        if (img) {
+          img.src = src;
+        }
+      });
+    }
+
+    function showImage(index) {
+      document.querySelectorAll(".gallery img").forEach((img, i) => {
+        img.classList.remove("active");
+        if (i === index) img.classList.add("active");
+      });
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % 3;
+      showImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex + 2) % 3;
+      showImage(currentIndex);
+    }
+
+    function addToWishlist() {
+      alert("İstek listesine eklendi!");
+    }
+
+    const gameId = getGameId();
+    const game = games[gameId];
+
+    if (game) {
+      document.getElementById("gameTitle").textContent = game.title;
+      document.getElementById("gamePrice").textContent = game.price;
+      document.getElementById("gameDescription").textContent = game.description;
+      updateGallery(game.images);
+    } else {
+      document.getElementById("productCard").innerHTML = "<h2>Oyun bulunamadı.</h2><a class='back-btn' href='Acikdunya.html'>← Geri Dön</a>";
+    }
+  </script>
+
+</body>
+</html>

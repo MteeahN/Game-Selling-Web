@@ -1,0 +1,511 @@
+/* Genel Stiller */
+:root {
+    --turuncu-ana: #FF8000;
+    --turuncu-koyu: #D66B00;
+    --turuncu-acik: #FFB266;
+    --gri-ana: #252525;
+    --gri-koyu: #1b1b1b;
+    --gri-acik: #444444;
+}
+
+/* Sepet Stili */
+.sepet-panel {
+    position: fixed;
+    top: 0;
+    right: -500px;
+    width: 450px;
+    height: 100%;
+    background-color: var(--gri-koyu);
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sepet-panel.active {
+    right: 0;
+}
+
+.sepet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--turuncu-ana);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.sepet-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--turuncu-ana);
+}
+
+.sepet-kapat {
+    position: absolute;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--turuncu-ana);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.sepet-kapat:hover {
+    transform: rotate(90deg);
+    border-color: var(--turuncu-acik);
+}
+
+.sepet-kapat::before, .sepet-kapat::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: var(--gri-koyu);
+}
+
+.sepet-kapat::before {
+    transform: rotate(45deg);
+}
+
+.sepet-kapat::after {
+    transform: rotate(-45deg);
+}
+
+.sepet-urunler {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.sepet-urun {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--turuncu-ana);
+    position: relative;
+}
+
+.sepet-urun-img {
+    width: 130px;
+    height: 130px;
+    align-items: center;
+    margin-right: 15px;
+    border: 2px solid var(--turuncu-ana);
+    border-radius: 5px;
+}
+
+.sepet-urun-detay {
+    flex: 1;
+}
+
+.sepet-urun-baslik {
+    color: var(--turuncu-ana);
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.sepet-urun-fiyat {
+    font-weight: bold;
+    color: var(--turuncu-ana);
+    margin-bottom: 10px;
+}
+
+.sepet-urun-sil {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.sepet-urun-sil:hover {
+    color: red;
+}
+
+/* Sepet Ürün Adet */
+.sepet-urun-adet {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.adet-btn {
+    color: var(--turuncu-ana);
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--turuncu-koyu);
+    background: var(--gri-acik);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.adet-btn:hover {
+    background: var(--turuncu-acik);
+    color: var(--gri-koyu);
+}
+
+.adet-sayi {
+    color: var(--turuncu-ana);
+    width: 35px;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 5px;
+}
+
+.kiralama-suresi-btn {
+    margin: 8px 0;
+    padding: 5px 12px;
+    border-radius: 12px;
+    border: 2px solid var(--turuncu-ana); 
+    background-color: var(--gri-acik); 
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--turuncu-ana);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.kiralama-suresi-btn:hover {
+    background-color: var(--turuncu-acik);
+}
+
+.kiralama-suresi-btn.active {
+    background-color: var(--turuncu-koyu);
+    color: var(--gri-ana);
+    border-color: var(--turuncu-ana);
+}
+
+/* Sepet Boş */
+.sepet-bos-mesaj {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--turuncu-koyu);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.sepet-bos-mesaj i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--turuncu-koyu);
+}
+
+.sepet-bos-mesaj p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.alisverise-basla-btn {
+    text-decoration: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: var(--turuncu-koyu);
+    color: var(--gri-koyu);
+    border: 2px solid var(--turuncu-acik);
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.alisverise-basla-btn::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+    transition: all 0.3s ease;
+    transform: rotate(45deg);
+}
+
+.alisverise-basla-btn:hover::after {
+    top: 0;
+    left: 100%;
+}
+
+.alisverise-basla-btn:hover {
+    background-color: var(--gri-acik);
+    color: var(--turuncu-ana);
+    border-color: var(--turuncu-ana);
+}
+
+.sepet-ozet {
+    padding: 20px;
+    background-color: var(--turuncu-ana);
+    border-top: 2px solid var(--turuncu-acik);
+}
+
+.ozet-satir {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: var(--gri-koyu);
+}
+
+.ozet-satir.toplam {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--gri-koyu);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var;
+}
+
+.odeme-btn {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 0.1fr;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--gri-koyu);
+    border: 2px solid var(--gri-koyu);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease-in-out, text-indent 0.3s ease-in-out;
+}
+
+.odeme-btn::after {
+    content: attr(data-ico);
+    font-size: 20px;
+    opacity: 0;
+    transform: translateX(-90px);
+    transition: opacity 0.5s, transform 0.3s;
+}
+
+.odeme-btn:hover {
+    background: var(--gri-koyu);
+    color: var(--turuncu-ana);
+}
+
+.odeme-btn:hover::after {
+    opacity: 1;
+    transform: translateX(-20px) scale(1.6);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.islem-secenekleri {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.operation-type-button {
+    margin: 8px 0;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 2px solid var(--turuncu-ana); 
+    background-color: var(--gri-acik); 
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--turuncu-ana);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.operation-type-button:hover {
+    transform: scale(1.1);
+    color: var(--turuncu-acik);
+}
+
+.kiralama-suresi-btn {
+    background-color:var(--gri-koyu);
+    border: 2px solid var(--turuncu-ana);
+    color: var(--turuncu-ana);
+    border-radius: 8px;
+    padding: 5px 12px;
+    margin-left: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: pulse 1.5s infinite;
+}
+
+.kiralama-suresi-btn:hover {
+    background-color: var(--turuncu-ana);
+    color: var(--gri-ana);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 141, 11, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(180, 103, 14, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(70, 130, 180, 0);
+    }
+}
+
+.kiralama-active .kiralama-suresi-btn {
+    display: inline-block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Kiralama Süresi Switch */
+.filter-switch {
+    border: 2px solid #ffc000;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 220px; /* Sepet için daralttım */
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  
+  .filter-switch input {
+    display: none;
+  }
+  
+  .filter-switch label {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.5s;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  .filter-switch .background {
+    position: absolute;
+    width: 50%;
+    height: 38px;
+    background-color: #ffc000;
+    top: 4px;
+    left: 4px;
+    border-radius: 30px;
+    transition: left 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  #option2:checked ~ .background {
+    left: 50%;
+  }
+  
+  .filter-switch input:checked + label {
+    color: #212121;
+    font-weight: bold;
+  }
+  
+  .filter-switch label {
+    color: #7d7d7d;
+  }
+  
+  /* Kiralama aktif olunca text koyulaşıyor */
+  .filter-switch input:checked + label {
+    color: #212121;
+  }
+
+.operation-type-button[data-tip="Satın Alma"] {
+    background-color: rgba(255, 87, 34, 0.1);
+    border-color: var(--turuncu-ana);
+}
+
+.operation-type-button[data-tip="Kiralama"] {
+    background-color: rgba(255, 87, 34, 0.1);
+    border-color: var(--turuncu-ana);
+}
+
+#sepet-sayi {
+    display: inline-block;
+    background-color: var(--turuncu-ana);
+    color: var(--gri-koyu);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    text-align: center;
+    line-height: 18px;
+    margin-left: 5px;
+}
+
+/* Bildirim */
+.bildirim {
+    position: fixed;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--turuncu-ana);
+    color: var(--gri-koyu);
+    padding: 15px 25px;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: bottom 0.3s ease;
+    border-left: 4px solid var(--turuncu-ana);
+    font-weight: 500;
+}
+
+.bildirim.success {
+    border-left-color: var(--turuncu-acik);
+}
+
+.bildirim.error {
+    border-left-color: #e74c3c;
+}
+
+.bildirim-goster {
+    bottom: 20px;
+}
