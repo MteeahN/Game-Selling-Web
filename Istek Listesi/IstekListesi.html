@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Oyun İstek Listesi</title>
+    <link rel="stylesheet" href="IstekListesi.css">
+    <link rel="stylesheet" href="../Sepet/Sepet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Bölümü -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img onclick="window.location.href='../Uye/Uye.html'" src="../assets/MteLogo.png" alt="Darari Logo ">
+                </div>
+                <div class="user-actions">
+                    <a onclick="window.location.href='../Profil/Profil.html'"><i class="fas fa-user"></i> Profil</a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i>Sepet</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Sepet Bölümü -->
+        <div class="container main-content">
+            <!-- Sepet paneli overlay olarak gelecek -->
+            <div id="sepet-panel" class="sepet-panel">
+                <div class="sepet-header">
+                    <h2>Sepetim</h2>
+                    <button id="sepet-kapat" class="sepet-kapat"></button>
+                </div>
+                
+                <div class="sepet-urunler" id="sepet-urunler">
+                    <!-- Sepet boşsa gösterilecek mesaj -->
+                    <div id="sepet-bos-mesaj" class="sepet-bos-mesaj">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Sepetinizde ürün bulunmamaktadır.</p>
+                        <a href="../Uye/Uye.html" class="alisverise-basla-btn">Alışverişe Başla</a>
+                    </div>
+                </div>
+                
+                <!-- Sepetteki ürünler buraya dinamik olarak eklenecek -->   
+                <div class="sepet-ozet" id="sepet-ozet">
+                    <div class="ozet-satir">
+                        <span>Ara Toplam:</span>
+                        <span id="ara-toplam">₺0.00</span>
+                    </div>
+                    <div class="ozet-satir">
+                        <span>İndirim:</span>
+                        <span id="indirim">-₺0.00</span>
+                    </div>
+                    <div class="ozet-satir toplam">
+                        <span>Toplam:</span>
+                        <span id="toplam">₺0.00</span>
+                    </div>
+                    <button id="odeme-btn" class="odeme-btn" data-ico="￫">Ödemeye Geç</button>
+                </div>
+            </div>
+            
+            <!-- Sayfa karartma overlay'i -->
+            <div id="overlay" class="overlay"></div>
+        </div>
+
+        <!-- Sepet paneli -->
+        <div id="sepet-panel" class="sepet-panel">
+            <div class="sepet-header">
+                <h2>Sepetim</h2>
+                <button id="sepet-kapat" class="sepet-kapat"><i class="fas fa-times"></i></button>
+            </div>
+        
+            <div class="sepet-urunler" id="sepet-urunler">
+
+                <!-- Sepet boşsa gösterilecek mesaj -->
+                <div id="sepet-bos-mesaj" class="sepet-bos-mesaj">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Sepetinizde ürün bulunmamaktadır.</p>
+                    <a href="#anasayfa" class="alisverise-basla-btn">Alışverişe Başla</a>
+                </div>
+            </div>
+            <div class="sepet-ozet" id="sepet-ozet">
+                <div class="ozet-satir">
+                    <span>Ara Toplam</span>
+                    <span id="ara-toplam">₺0.00</span>
+                </div>
+                <div class="ozet-satir">
+                    <span>İndirim</span>
+                    <span id="indirim">-₺0.00</span>
+                </div>
+                <div class="ozet-satir toplam">
+                    <span>Toplam</span>
+                    <span id="toplam">₺0.00</span>
+                </div>
+                <button class="alisverise-basla-btn">Alışverişe Başla</button>
+                <!-- Sepetle İlgili Butonlar -->
+                <button id="odeme-btn" class="odeme-btn">Ödeme Yap</button>
+                <!-- Overlay -->
+                <div id="overlay" class="overlay"></div>
+            </div>
+        </div>
+
+        <div class="wish-container">
+            <h1 class="title">Oyun İstek Listesi</h1>
+
+            <div class="sorting-controls">
+                <select class="sort-select" id="sort-by" onchange="sortGames()">
+                    <option value="name-asc">İsme Göre Artan (A-Z)</option>
+                    <option value="name-desc">İsme Göre Azalan (Z-A)</option>
+                    <option value="price-asc">Fiyata Göre Artan</option>
+                    <option value="price-desc">Fiyata Göre Azalan</option>
+                    <option value="date-asc">Eklenme Tarihine Göre En Eski</option>
+                    <option value="date-desc">Eklenme Tarihine Göre En Yeni</option>
+                    <option value="priority-asc">Önceliğe Göre Artan</option>
+                    <option value="priority-desc">Önceliğe Göre Azalan</option>
+                </select>
+            </div>
+            <div class="game-list" id="game-list"></div>
+        </div>
+    </main>
+    <script src="../Sepet/Sepet.js"></script>
+    <script src="IstekListesi.js"></script>
+</body>

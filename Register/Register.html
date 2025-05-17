@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darari - Giriş Yap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Register.css">
+</head>
+<body>
+    <div class="login-container">
+    <div class="close-btn" onclick="closeLoginPage()"></div>
+        <div class="floating-logo">
+            <img src="../assets/MteLogo.png" alt="Darari Logo">
+        </div>
+        <h2 class="login-title">Hoş Geldiniz</h2>
+        <form id="loginForm">
+            <div class="name-container">
+                <div class="name-group">
+                    <input type="text" class="name" placeholder="Adınız" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="name-group">
+                    <input type="text" class="last-name" placeholder="Soyadınız" required>
+                    <i class="fas fa-signature"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" id="nick" placeholder="Kullanıcı Adınız" required>
+                <i class="fas fa-id-card-clip"></i>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="E-posta Adresiniz" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Şifreniz" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            <div id="errorMessage"></div>
+            <div class="auth-links">
+                <a href="#">Yardım</a>
+            </div>
+            <button type="submit" class="login-btn">Üye Ol</button>
+        </form>
+        <div class="signup-link">
+            Zaten Üye Misin? <a href="#" onclick="window.location.href='../Login/Login.html'">Giriş Yap</a>
+        </div>
+    </div>
+
+    <script src="Register.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+:root {
+    --gradient: linear-gradient(135deg, var(--turuncu-koyu), var(--turuncu-acik));
+    --turuncu-acik: #FFB266;
+    --turuncu-ana: #FF8000;
+    --turuncu-koyu: #D66B00;
+    --mavi-acik: #666c92;
+    --mavi-koyu: #2D3250;
+    --gri-acik: #444444;
+    --gri-ana: #252525;
+    --gri-koyu: #1b1b1b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--gri-ana);
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header Bölümü */
+header {
+    background-color: var(--gri-koyu);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid var(--turuncu-ana);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.container .header-top .logo img {
+    height: 50px;
+    width: 50px;
+}
+
+.user-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.user-actions a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.user-actions a:hover {
+    color: var(--turuncu-ana);
+}
+
+/* Istek Listesi */
+.wish-container{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    background: var(--gradient);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 2px;
+}
+
+.sorting-controls {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sort-select {
+    background-color: var(--gri-koyu);
+    color: var(--turuncu-ana);
+    border: 2px solid var(--turuncu-ana);
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.game-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-card {
+    background-color: var(--gri-koyu);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: stretch;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.game-card:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.game-card-image {
+    width: 300px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.game-card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--gri-ana);
+}
+
+.game-card-header h3 {
+    font-size: 1.2rem;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.game-card:hover .game-card-header h3 {
+    color: var(--turuncu-ana);
+}
+
+.priority-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover .priority-badge {
+    transform: scale(1.1);
+}
+
+.priority-low { 
+    background-color: #4CAF50; 
+    color: white;
+}
+.priority-medium { 
+    background-color: #FFC107; 
+    color: black;
+}
+.priority-high { 
+    background-color: #F44336; 
+    color: white;
+    position: relative;
+    overflow: hidden;
+    animation: pulse-flare 1.5s infinite;
+}
+
+.priority-high::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg, 
+        transparent, 
+        rgba(255,255,255,0.3), 
+        transparent
+    );
+    transform: rotate(-45deg);
+    animation: flare 1.5s infinite;
+}
+
+.game-card-body {
+    padding: 15px;
+    opacity: 0.9;
+    transform: translateZ(30px);
+    flex-grow: 1;
+}
+
+.game-card-body p {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-card-body p strong {
+    opacity: 0.7;
+}
+
+.game-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--gri-ana);
+    gap: 10px;
+}
+
+.btn {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0 5px;
+}
+
+.wishlist-buy-btn {
+    background: var(--gradient);
+    color: var(--gri-koyu);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.wishlist-buy-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+}
+
+.wishlist-rent-btn {
+    background-color: transparent;
+    color: var(--turuncu-ana);
+    border: 2px solid var(--turuncu-ana);
+}
+
+.wishlist-rent-btn:hover {
+    background-color: rgba(255,128,0,0.2);
+    border-color: var(--turuncu-ana);
+    color: var(--turuncu-ana);
+}
+
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.bildirim {
+    position: fixed;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--turuncu-ana);
+    color: var(--gri-koyu);
+    padding: 15px 25px;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: bottom 0.3s ease;
+    border-left: 4px solid var(--turuncu-ana);
+    font-weight: 500;
+}
+
+.bildirim.success {
+    border-left-color: var(--turuncu-acik);
+}
+
+.bildirim.error {
+    border-left-color: #e74c3c;
+}
+
+.bildirim-goster {
+    bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .scroll-arrow {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .wishlist-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .wishlist-icon i {
+        font-size: 14px;
+    }
+}
+
+.empty-list {
+    text-align: center;
+    padding: 40px;
+    font-size: 22px;
+    color: var(--turuncu-ana);
+}
+
+.remove-btn {
+    background-color: transparent;
+    color: #F44336;
+    border: 2px solid #F44336;
+    flex-grow: 0;
+    flex-basis: auto;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@keyframes pulse-flare {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes flare {
+    0% { transform: rotate(-45deg) translateX(-100%); }
+    100% { transform: rotate(-45deg) translateX(100%); }
+}

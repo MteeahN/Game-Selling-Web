@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Üye Profil Sayfası</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../Sepet/Sepet.css">
+    <link rel="stylesheet" href="Profil.css">
+
+</head>
+<!-- Header Bölümü -->
+<header>
+    <div class="container">
+        <div class="header-top">
+            <div class="logo">
+                <img onclick="window.location.href='../Uye/Uye.html'" src="../assets/MteLogo.png" alt="Darari Logo ">
+            </div>
+            <div class="user-actions">
+                <a onclick="window.location.href='../Istek Listesi/IstekListesi.html'"><i class="fas fa-heart"></i> İstek Listesi</a>
+                <a href="#"><i class="fas fa-shopping-cart"></i>Sepet</a>
+            </div>
+        </div>
+    </div>
+</header>
+<body>    
+    <main>
+        <!-- Sepet Bölümü -->
+        <div class="container main-content">
+            <!-- Sepet paneli overlay olarak gelecek -->
+            <div id="sepet-panel" class="sepet-panel">
+                <div class="sepet-header">
+                    <h2>Sepetim</h2>
+                    <button id="sepet-kapat" class="sepet-kapat"></button>
+                </div>
+                <div class="sepet-urunler" id="sepet-urunler">
+                    <!-- Sepet boşsa gösterilecek mesaj -->
+                    <div id="sepet-bos-mesaj" class="sepet-bos-mesaj">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Sepetinizde ürün bulunmamaktadır.</p>
+                        <a href="../Uye/Uye.html" class="alisverise-basla-btn">Alışverişe Başla</a>
+                    </div>
+                </div>
+                
+                <!-- Sepetteki ürünler buraya dinamik olarak eklenecek -->   
+                <div class="sepet-ozet" id="sepet-ozet">
+                    <div class="ozet-satir">
+                        <span>Ara Toplam:</span>
+                        <span id="ara-toplam">₺0.00</span>
+                    </div>
+                    <div class="ozet-satir">
+                        <span>İndirim:</span>
+                        <span id="indirim">-₺0.00</span>
+                    </div>
+                    <div class="ozet-satir toplam">
+                        <span>Toplam:</span>
+                        <span id="toplam">₺0.00</span>
+                    </div>
+                    <button id="odeme-btn" class="odeme-btn" data-ico="￫">Ödemeye Geç</button>
+                </div>
+            </div>
+            
+            <!-- Sayfa karartma overlay'i -->
+            <div id="overlay" class="overlay"></div>
+        </div>
+
+        <!-- Sepet paneli -->
+        <div id="sepet-panel" class="sepet-panel">
+            <div class="sepet-header">
+                <h2>Sepetim</h2>
+                <button id="sepet-kapat" class="sepet-kapat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="sepet-urunler" id="sepet-urunler">
+
+                <!-- Sepet boşsa gösterilecek mesaj -->
+                <div id="sepet-bos-mesaj" class="sepet-bos-mesaj">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Sepetinizde ürün bulunmamaktadır.</p>
+                    <a href="#anasayfa" class="alisverise-basla-btn">Alışverişe Başla</a>
+                </div>
+            </div>
+            <div class="sepet-ozet" id="sepet-ozet">
+                <div class="ozet-satir">
+                    <span>Ara Toplam</span>
+                    <span id="ara-toplam">₺0.00</span>
+                </div>
+                <div class="ozet-satir">
+                    <span>İndirim</span>
+                    <span id="indirim">-₺0.00</span>
+                </div>
+                <div class="ozet-satir toplam">
+                    <span>Toplam</span>
+                    <span id="toplam">₺0.00</span>
+                </div>
+                <button class="alisverise-basla-btn">Alışverişe Başla</button>
+                <!-- Sepetle İlgili Butonlar -->
+                <button id="odeme-btn" class="odeme-btn">Ödeme Yap</button>
+                <!-- Overlay -->
+                <div id="overlay" class="overlay"></div>
+            </div>
+        </div>
+        
+        <!-- Profil -->
+        <div class="container">
+            <div class="profile-subscription-row">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <h1>Üye Profili</h1>
+                    <div class="logout-btn" onclick="window.location.href='../index.html'"> 
+                        <span class="icon-wrapper">
+                          <i class="fa-solid fa-door-closed"></i>
+                          <i class="fa-solid fa-door-open"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="profile-content">
+                    <div class="profile-sidebar">
+                        <div class="profile-photo-container">
+                            <img src="../assets/avatars/avatar1.png" alt="Profil Avatarı" class="profile-photo" id="selected-avatar">
+                            <div class="profile-photo-overlay" title="Avatar Değiştir" onclick="openAvatarSelection()">
+                                👤
+                            </div>
+                        </div>
+                        <div class="loyalty-badge">
+                            🏆 Altın Üye
+                        </div>
+                        <div class="loyalty-points">
+                            <h3>Sadakat Puanı</h3>
+                            <p>880 puan</p>
+                        </div>
+                    </div>
+                    <div class="profile-main">
+                        <div class="profile-section">
+                            <h2 class="section-title">Kişisel Bilgiler</h2>
+                            <div class="profile-details">
+                                <div class="detail-row">
+                                    <div class="detail-label">Ad Soyad:</div>
+                                    <div class="detail-value">Metehan Tabak</div>
+                                </div>
+                                <div class="detail-row">
+                                    <div class="detail-label">Kullanıcı Adı:</div>
+                                    <div class="detail-value">MteeahN</div>
+                                </div>
+                                <div class="detail-row">
+                                    <div class="detail-label">E-posta:</div>
+                                    <div class="detail-value">wmetehan@gmail.com</div>
+                                </div>
+                                <div class="detail-row">
+                                    <div class="detail-label">Üyelik Tarihi:</div>
+                                    <div class="detail-value">22 Nisan 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Abonelik -->
+            <div class="subscription-container">
+                <div class="subscription-header">
+                    <h1>Abonelik Bilgileri</h1>
+                </div>
+                <div class="subscription-content">
+                    <div class="subscription-info">
+                        <div class="subscription-title">
+                            <h2>Yıllık Üyelik</h2>
+                            <span class="subscription-status active">Aktif</span>
+                        </div>
+                        <div class="subscription-details">
+                            <div class="detail-row">
+                                <div class="detail-label">Başlangıç Tarihi:</div>
+                                <div class="detail-value">15 Ocak 2025</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-label">Yenileme Tarihi:</div>
+                                <div class="detail-value">15 Ocak 2026</div>
+                            </div>
+                            <div class="detail-row">
+                                <div class="detail-label">Ücret:</div>
+                                <div class="detail-value price">1919,99 ₺</div>
+                            </div>
+                        </div>
+                        <div class="subscription-progress">
+                            <div class="progress-header">
+                                <h3>Abonelik Süresi</h3>
+                                <span>4 ay / 12 ay</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" style="width: 33%"></div>
+                            </div>
+                        </div>
+                        <div class="subscription-actions">
+                            <button class="change-button">
+                                <span class="change-button-icon">
+                                    <i class="fas fa-cube"></i>
+                                </span>
+                                <span class="change-button-text">Değiştir</span>
+                            </button>
+                            <button class="cancel-button">
+                                <span class="cancel-button-icon">
+                                    <i class="fas fa-ban"></i>
+                                </span>
+                                <span class="cancel-button-text">İptal Et</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Satın Alma -->
+        <div class="purchase-history">
+            <h1>Satın Alma Geçmişi</h1>
+            <div class="table-container">
+                <table id="purchaseTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="date">Tarih</th>
+                            <th data-sort="product">Ürün</th>
+                            <th data-sort="price">Fiyat</th>
+                            <th data-sort="status">Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-date="2025-02-11">
+                                <div class="date-cell">11 Şubat 2025</div>
+                            </td>
+                            <td class="item-name">Red Dead Redemption 2</td>
+                            <td class="price" data-price="2199">2.199,00 ₺</td>
+                            <td class="status-sell">Satın Alındı</td>
+                        </tr>
+                        <tr>
+                            <td data-date="2024-11-09">
+                                <div class="date-cell">9 Kasım 2024</div>
+                            </td>
+                            <td class="item-name">Assassin's Creed Shadows</td>
+                            <td class="price" data-price="1999">1.999,00 ₺</td>
+                            <td class="status-rent">Kiralandı</td>
+                        </tr>
+                        <tr>
+                            <td data-date="2024-12-24">
+                                <div class="date-cell">24 Aralık 2024</div>
+                            </td>
+                            <td class="item-name">God of War Ragnarök</td>
+                            <td class="price" data-price="1699">1.699,00 ₺</td>
+                            <td class="status-sell">Satın Alındı</td>
+                        </tr>
+                        <tr>
+                            <td data-date="2025-03-07">
+                                <div class="date-cell">7 Mart 2025</div>
+                            </td>
+                            <td class="item-name">Hogwarts Legacy</td>
+                            <td class="price" data-price="2199">2.199,00 ₺</td>
+                            <td class="status-cancelled">İptal Edildi</td>
+                        </tr>
+                        <tr>
+                            <td data-date="2025-01-04">
+                                <div class="date-cell">4 Ocak 2025</div>
+                            </td>
+                            <td class="item-name">Marvel's Spider-Man 2</td>
+                            <td class="price" data-price="2199">2.199,00 ₺</td>
+                            <td class="status-sell">Satın Alındı</td>
+                        </tr>
+                        <tr>
+                            <td data-date="2025-04-01">
+                                <div class="date-cell">1 Nisan 2025</div>
+                            </td>
+                            <td class="item-name">The Last of Us Part II</td>
+                            <td class="price" data-price="1799">1.799,00 ₺</td>
+                            <td class="status-rent">Kiralandı</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        
+    <div id="avatar-modal" class="avatar-modal">
+        <div class="avatar-modal-content">
+            <div class="avatar-modal-header">
+                <h3>Avatar Seçin</h3>
+                <span class="avatar-close" onclick="closeAvatarSelection()">&times;</span>
+            </div>
+            <div class="avatar-grid">
+                <div class="avatar-option" onclick="selectAvatar('../assets/avatars/avatar1.png')">
+                    <img src="../assets/Avatars/Avatar1.png" alt="Avatar 1">
+                </div>
+                <div class="avatar-option" onclick="selectAvatar('../assets/avatars/avatar2.png')">
+                    <img src="../assets/Avatars/Avatar2.png" alt="Avatar 2">
+                </div>
+                <div class="avatar-option" onclick="selectAvatar('../assets/avatars/avatar3.png')">
+                    <img src="../assets/Avatars/Avatar3.png" alt="Avatar 3">
+                </div>
+                <div class="avatar-option" onclick="selectAvatar('../assets/avatars/avatar4.png')">
+                    <img src="../assets/Avatars/Avatar4.png" alt="Avatar 4">
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    </main>
+    <script src="Profil.js"></script>
+    <script src="../Sepet/Sepet.js"></script>
+</body>
+</html>

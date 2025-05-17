@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darari - Giriş Yap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+    <div class="login-container">
+    <div class="close-btn" onclick="closeLoginPage()"></div>
+        <div class="floating-logo">
+            <img src="../assets/MteLogo.png" alt="Darari Logo">
+        </div>
+        <h2 class="login-title">Hoş Geldiniz</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" placeholder="E-posta Adresiniz" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Şifreniz" required>
+                <i class="fas fa-lock"></i>
+            </div>
+            <div id="errorMessage"></div>
+            <div class="auth-links">
+                <a href="#">Şifremi Unuttum</a>
+                <a href="#">Yardım</a>
+            </div>
+            <button type="submit" class="login-btn">Giriş Yap</button>
+        </form>
+        <div class="signup-link">
+            Hesabınız yok mu? <a href="#" onclick="window.location.href='../Register/Register.html'">Üye Ol</a>
+        </div>
+    </div>
+
+    <script src="Login.js"></script>
+</body>
+</html>

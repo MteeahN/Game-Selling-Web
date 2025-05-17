@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    --turuncu-acik: #FFB266;
+    --turuncu-ana: #FF8000;
+    --turuncu-koyu: #D66B00;
+    --mavi-acik: #666c92;
+    --mavi-koyu: #2D3250;
+    --gri-acik: #444444;
+    --gri-ana: #252525;
+    --gri-koyu: #1b1b1b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--gri-acik) 0%, var(--gri-ana) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.login-container {
+    background-color: var(--gri-koyu);
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px;
+    padding: 50px;
+    text-align: center;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.floating-logo {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--turuncu-acik) 0%, var(--turuncu-koyu) 100%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-logo img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-15px); }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--turuncu-ana);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.close-btn:hover {
+    background-color: var(--turuncu-ana);
+    transform: rotate(90deg);
+    border-color: var(--turuncu-acik);
+}
+
+.close-btn::before, .close-btn::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 2px;
+    background-color: var(--gri-koyu);
+}
+
+.close-btn::before {
+    transform: rotate(45deg);
+}
+
+.close-btn::after {
+    transform: rotate(-45deg);
+}
+
+.login-title {
+    color: var(--turuncu-ana);
+    margin: 40px 0 40px;
+    font-size: 32px;
+    font-weight: 600;
+    position: relative;
+}
+
+.login-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--turuncu-koyu) 0%, var(--turuncu-ana) 100%);
+    border-radius: 2px;
+}
+
+.name-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.name-group {
+    position: relative;
+    width: 48%;
+}
+
+.name-group input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: var(--gri-acik);
+    color: var(--turuncu-koyu);
+    transition: all 0.3s ease;
+}
+
+.name-group input:focus {
+    outline: none;
+    border-color: var(--turuncu-koyu);
+    background-color: var(--gri-acik);
+    box-shadow: 0 0 15px rgba(230, 140, 4, 0.2);
+}
+
+.name-group i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--turuncu-ana);
+    transition: color 0.3s ease;
+}
+
+.name-group input:focus + i {
+    color: var(--turuncu-acik);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: var(--gri-acik);
+    color: var(--turuncu-koyu);
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--turuncu-koyu);
+    background-color: var(--gri-acik);
+    box-shadow: 0 0 15px rgba(230, 140, 4, 0.2);
+}
+
+.input-group i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--turuncu-ana);
+    transition: color 0.3s ease;
+}
+
+.input-group input:focus + i {
+    color: var(--turuncu-acik);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--turuncu-koyu) 0%, var(--turuncu-ana) 100%);
+    color: var(--gri-koyu);
+    border: none;
+    border-radius: 10px;
+    font-size: 26px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.5s ease;
+}
+
+.login-btn:hover::before {
+    left: 100%;
+}
+
+.login-btn:hover {
+    transform: scale(1.05);
+}
+
+.auth-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.auth-links a {
+    color: var(--turuncu-ana);
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: var(--mavi-acik);
+}
+
+.signup-link {
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--turuncu-ana);
+}
+
+.signup-link a {
+    color: var(--turuncu-acik);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: var(--mavi-acik);
+}
+
+#errorMessage {
+    color:  red;
+    margin-bottom: 15px;
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;
+        padding: 30px;
+    }
+}
